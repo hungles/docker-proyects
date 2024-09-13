@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: lelo
+      WORDPRESS_DB_NAME: wordpress
+    links:
+      - mysql:mysql
+  
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: lelo
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - ./mysql-data/:/var/lib/mysql/
